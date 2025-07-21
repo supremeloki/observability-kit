@@ -36,3 +36,5 @@ class TraceCollector:
         return f"span-{time.monotonic_ns()}"
 
 
+class Tracer:
+    def __init__(self, collector: TraceCollector | None = None) -> None:

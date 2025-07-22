@@ -40,3 +40,5 @@ class Tracer:
     def __init__(self, collector: TraceCollector | None = None) -> None:
         self._collector = collector or TraceCollector()
         self._finished_spans: list[dict[str, Any]] = []
+
+    @property

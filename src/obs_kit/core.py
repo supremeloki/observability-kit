@@ -42,3 +42,5 @@ class Tracer:
         self._finished_spans: list[dict[str, Any]] = []
 
     @property
+    def finished_count(self) -> int:
+        return len(self._finished_spans)

@@ -44,3 +44,5 @@ class Tracer:
     @property
     def finished_count(self) -> int:
         return len(self._finished_spans)
+
+    @contextmanager

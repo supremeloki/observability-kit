@@ -48,3 +48,4 @@ class Tracer:
     @contextmanager
     def span(self, operation: str,
              parent_span_id: str | None = None) -> Generator[SpanContext, None, None]:
+        trace_id = self._collector.start_trace()

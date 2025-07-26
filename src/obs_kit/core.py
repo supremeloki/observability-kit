@@ -53,3 +53,5 @@ class Tracer:
         context = SpanContext(
             trace_id=trace_id, span_id=span_id, parent_span_id=parent_span_id,
         )
+        started = time.perf_counter()
+        try:

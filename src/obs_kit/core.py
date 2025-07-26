@@ -51,3 +51,5 @@ class Tracer:
         trace_id = self._collector.start_trace()
         span_id = self._collector.new_span_id()
         context = SpanContext(
+            trace_id=trace_id, span_id=span_id, parent_span_id=parent_span_id,
+        )

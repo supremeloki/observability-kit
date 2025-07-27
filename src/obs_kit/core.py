@@ -55,3 +55,5 @@ class Tracer:
         )
         started = time.perf_counter()
         try:
+            yield context
+        except Exception as exc:

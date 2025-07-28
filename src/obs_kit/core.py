@@ -59,3 +59,5 @@ class Tracer:
         except Exception as exc:
             self._finished_spans.append({
                 "operation": operation,
+                "trace_id": context.trace_id,
+                "span_id": context.span_id,

@@ -57,3 +57,5 @@ class Tracer:
         try:
             yield context
         except Exception as exc:
+            self._finished_spans.append({
+                "operation": operation,

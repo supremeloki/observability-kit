@@ -65,3 +65,5 @@ class Tracer:
                 "duration_ms": round((time.perf_counter() - started) * 1000, 3),
                 "status": "error",
                 "error": type(exc).__name__,
+            })
+            raise

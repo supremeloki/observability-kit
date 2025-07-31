@@ -67,3 +67,5 @@ class Tracer:
                 "error": type(exc).__name__,
             })
             raise
+        else:
+            self._finished_spans.append({

@@ -71,3 +71,5 @@ class Tracer:
             self._finished_spans.append({
                 "operation": operation,
                 "trace_id": context.trace_id,
+                "span_id": context.span_id,
+                "parent_span_id": context.parent_span_id,

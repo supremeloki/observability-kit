@@ -69,3 +69,5 @@ class Tracer:
             raise
         else:
             self._finished_spans.append({
+                "operation": operation,
+                "trace_id": context.trace_id,

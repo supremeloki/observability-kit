@@ -77,3 +77,5 @@ class Tracer:
                 "status": "ok",
             })
 
+    def spans_for(self, trace_id: str) -> list[dict[str, Any]]:
+        return [s for s in self._finished_spans if s["trace_id"] == trace_id]

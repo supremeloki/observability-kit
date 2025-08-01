@@ -75,3 +75,5 @@ class Tracer:
                 "parent_span_id": context.parent_span_id,
                 "duration_ms": round((time.perf_counter() - started) * 1000, 3),
                 "status": "ok",
+            })
+

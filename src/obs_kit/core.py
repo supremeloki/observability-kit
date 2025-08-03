@@ -83,3 +83,5 @@ class Tracer:
     def error_spans(self) -> list[dict[str, Any]]:
         return [s for s in self._finished_spans if s["status"] == "error"]
 
+
+class MetricsRegistry:

@@ -85,3 +85,5 @@ class Tracer:
 
 
 class MetricsRegistry:
+    def __init__(self) -> None:
+        self._counters: dict[str, float] = {}

@@ -87,3 +87,5 @@ class Tracer:
 class MetricsRegistry:
     def __init__(self) -> None:
         self._counters: dict[str, float] = {}
+        self._gauges: dict[str, float] = {}
+        self._histograms: dict[str, list[float]] = defaultdict(list)

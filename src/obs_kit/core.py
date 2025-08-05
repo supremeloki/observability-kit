@@ -91,3 +91,5 @@ class MetricsRegistry:
         self._histograms: dict[str, list[float]] = defaultdict(list)
 
     def counter_inc(self, name: str, amount: float = 1.0) -> None:
+        if amount < 0:
+            raise ObservabilityError("counter increments must be non-negative")

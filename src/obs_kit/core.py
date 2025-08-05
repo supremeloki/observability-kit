@@ -89,3 +89,5 @@ class MetricsRegistry:
         self._counters: dict[str, float] = {}
         self._gauges: dict[str, float] = {}
         self._histograms: dict[str, list[float]] = defaultdict(list)
+
+    def counter_inc(self, name: str, amount: float = 1.0) -> None:

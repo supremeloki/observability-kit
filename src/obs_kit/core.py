@@ -93,3 +93,5 @@ class MetricsRegistry:
     def counter_inc(self, name: str, amount: float = 1.0) -> None:
         if amount < 0:
             raise ObservabilityError("counter increments must be non-negative")
+        self._counters[name] = self._counters.get(name, 0.0) + amount
+

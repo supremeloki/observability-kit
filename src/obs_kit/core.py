@@ -95,3 +95,5 @@ class MetricsRegistry:
             raise ObservabilityError("counter increments must be non-negative")
         self._counters[name] = self._counters.get(name, 0.0) + amount
 
+    def gauge_set(self, name: str, value: float) -> None:
+        self._gauges[name] = value

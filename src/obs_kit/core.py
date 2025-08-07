@@ -99,3 +99,5 @@ class MetricsRegistry:
         self._gauges[name] = value
 
     def histogram_observe(self, name: str, value: float) -> None:
+        if not isinstance(value, (int, float)) or isinstance(value, bool):
+            raise ObservabilityError("histogram observations must be numeric")

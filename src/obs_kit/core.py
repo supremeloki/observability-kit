@@ -97,3 +97,5 @@ class MetricsRegistry:
 
     def gauge_set(self, name: str, value: float) -> None:
         self._gauges[name] = value
+
+    def histogram_observe(self, name: str, value: float) -> None:

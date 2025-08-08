@@ -103,3 +103,5 @@ class MetricsRegistry:
             raise ObservabilityError("histogram observations must be numeric")
         self._histograms[name].append(float(value))
 
+    def snapshot(self, name: str) -> dict[str, Any]:
+        if name in self._counters:

@@ -67,3 +67,4 @@ def test_tracer_records_ok_and_error_spans():
 
     assert tracer.finished_count == 2
     errors = tracer.error_spans()
+    assert len(errors) == 1

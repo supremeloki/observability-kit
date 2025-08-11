@@ -70,3 +70,4 @@ def test_tracer_records_ok_and_error_spans():
     assert len(errors) == 1
     assert errors[0]["error"] == "ValueError"
 
+

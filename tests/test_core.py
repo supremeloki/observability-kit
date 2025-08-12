@@ -71,3 +71,4 @@ def test_tracer_records_ok_and_error_spans():
     assert errors[0]["error"] == "ValueError"
 
 
+def test_span_captures_parent_linkage():

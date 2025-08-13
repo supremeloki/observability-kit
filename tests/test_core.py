@@ -75,3 +75,4 @@ def test_span_captures_parent_linkage():
     tracer = Tracer()
     with tracer.span("parent") as parent_ctx:
         pass
+    child_ctx = None

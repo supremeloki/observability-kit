@@ -73,3 +73,5 @@ def test_tracer_records_ok_and_error_spans():
 
 def test_span_captures_parent_linkage():
     tracer = Tracer()
+    with tracer.span("parent") as parent_ctx:
+        pass

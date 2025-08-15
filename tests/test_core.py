@@ -76,3 +76,4 @@ def test_span_captures_parent_linkage():
     with tracer.span("parent") as parent_ctx:
         pass
     child_ctx = None
+    with tracer.span("child", parent_span_id=parent_ctx.span_id) as child:

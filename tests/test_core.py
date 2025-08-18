@@ -81,3 +81,4 @@ def test_span_captures_parent_linkage():
     spans = tracer.spans_for(child_ctx.trace_id)
     linked = [s for s in spans if s["parent_span_id"] == parent_ctx.span_id]
     assert len(linked) >= 1
+

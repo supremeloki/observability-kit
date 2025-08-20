@@ -83,3 +83,4 @@ def test_span_captures_parent_linkage():
     assert len(linked) >= 1
 
 
+def test_alert_fires_on_threshold_breach(registry):

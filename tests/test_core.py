@@ -86,3 +86,4 @@ def test_span_captures_parent_linkage():
 def test_alert_fires_on_threshold_breach(registry):
     registry.gauge_set("cpu_percent", 92.0)
     manager = AlertManager(registry)
+    manager.add_rule(AlertRule(

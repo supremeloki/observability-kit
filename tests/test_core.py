@@ -93,3 +93,4 @@ def test_alert_fires_on_threshold_breach(registry):
         comparison=">",
         severity="critical",
     ))
+    firing = manager.firing_alerts()

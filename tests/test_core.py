@@ -91,3 +91,4 @@ def test_alert_fires_on_threshold_breach(registry):
         metric_name="cpu_percent",
         threshold=90.0,
         comparison=">",
+        severity="critical",

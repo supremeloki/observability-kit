@@ -89,3 +89,5 @@ def test_alert_fires_on_threshold_breach(registry):
     manager.add_rule(AlertRule(
         alert_name="cpu-high",
         metric_name="cpu_percent",
+        threshold=90.0,
+        comparison=">",

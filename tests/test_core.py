@@ -92,3 +92,4 @@ def test_alert_fires_on_threshold_breach(registry):
         threshold=90.0,
         comparison=">",
         severity="critical",
+    ))

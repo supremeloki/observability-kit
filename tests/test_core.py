@@ -94,3 +94,5 @@ def test_alert_fires_on_threshold_breach(registry):
         severity="critical",
     ))
     firing = manager.firing_alerts()
+    assert len(firing) == 1
+    assert firing[0]["severity"] == "critical"

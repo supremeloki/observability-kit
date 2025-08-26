@@ -98,3 +98,4 @@ def test_alert_fires_on_threshold_breach(registry):
     assert firing[0]["severity"] == "critical"
 
 
+def test_alert_silent_when_within_threshold(registry):

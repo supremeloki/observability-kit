@@ -97,3 +97,4 @@ def test_alert_fires_on_threshold_breach(registry):
     assert len(firing) == 1
     assert firing[0]["severity"] == "critical"
 
+

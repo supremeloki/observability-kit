@@ -101,3 +101,4 @@ def test_alert_fires_on_threshold_breach(registry):
 def test_alert_silent_when_within_threshold(registry):
     registry.gauge_set("cpu_percent", 42.0)
     manager = AlertManager(registry).add_rule(AlertRule(
+        "cpu-high", "cpu_percent", 90.0))

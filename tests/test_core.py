@@ -103,3 +103,4 @@ def test_alert_silent_when_within_threshold(registry):
     manager = AlertManager(registry).add_rule(AlertRule(
         "cpu-high", "cpu_percent", 90.0))
     assert manager.firing_alerts() == []
+

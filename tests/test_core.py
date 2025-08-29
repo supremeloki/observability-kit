@@ -105,3 +105,5 @@ def test_alert_silent_when_within_threshold(registry):
     assert manager.firing_alerts() == []
 
 
+def test_missing_metric_never_fires(registry):
+    manager = AlertManager(registry).add_rule(

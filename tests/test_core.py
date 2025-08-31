@@ -110,3 +110,5 @@ def test_missing_metric_never_fires(registry):
         AlertRule("ghost-alert", "nope_metric", 1.0))
     assert manager.firing_alerts() == []
 
+
+def test_invalid_comparison_rejected():

@@ -112,3 +112,4 @@ def test_missing_metric_never_fires(registry):
 
 
 def test_invalid_comparison_rejected():
+    with pytest.raises(ObservabilityError):

@@ -105,3 +105,82 @@ class MetricsRegistry:
 
     def snapshot(self, name: str) -> dict[str, Any]:
         if name in self._counters:
+            return {"type": "counter", "value": self._counters[name]}
+        if name in self._gauges:
+            return {"type": "gauge", "value": self._gauges[name]}
+        if name in self._histograms:
+            values = sorted(self._histograms[name])
+            return {
+                "type": "histogram",
+                "count": len(values),
+                "sum": round(sum(values), 6),
+                "p50": percentile(values, 50),
+                "p95": percentile(values, 95),
+                "max": values[-1],
+            }
+        raise UnknownMetricError(name)
+
+    def all_metric_names(self) -> tuple[str, ...]:
+        combined = set(self._counters) | set(self._gauges) | set(self._histograms)
+        return tuple(sorted(combined))
+
+
+def percentile(sorted_values: Sequence[float], percent: float) -> float:
+    if not sorted_values:
+        return 0.0
+    rank = (percent / 100.0) * (len(sorted_values) - 1)
+    lower = math.floor(rank)
+    upper = math.ceil(rank)
+    if lower == upper:
+        return sorted_values[int(rank)]
+    fraction = rank - lower
+    return round(sorted_values[lower] * (1 - fraction) + sorted_values[upper] * fraction, 6)
+
+
+@dataclass(frozen=True)
+class AlertRule:
+    alert_name: str
+    metric_name: str
+    threshold: float
+    comparison: str = ">"
+    severity: str = "warning"
+
+    def __post_init__(self) -> None:
+        if self.comparison not in {">", "<", ">=", "<=", "=="}:
+            raise ObservabilityError(f"invalid comparison: {self.comparison!r}")
+
+    def evaluate(self, value: float) -> bool:
+        return {
+            ">": value > self.threshold,
+            "<": value < self.threshold,
+            ">=": value >= self.threshold,
+            "<=": value <= self.threshold,
+            "==": value == self.threshold,
+        }[self.comparison]
+
+
+class AlertManager:
+    def __init__(self, registry: MetricsRegistry) -> None:
+        self._registry = registry
+        self._rules: dict[str, AlertRule] = {}
+
+    def add_rule(self, rule: AlertRule) -> "AlertManager":
+        self._rules[rule.alert_name] = rule
+        return self
+
+    def firing_alerts(self) -> list[dict[str, Any]]:
+        firing: list[dict[str, Any]] = []
+        for rule in self._rules.values():
+            try:
+                snapshot = self._registry.snapshot(rule.metric_name)
+            except UnknownMetricError:
+                continue
+            if rule.evaluate(float(snapshot["value"])):
+                firing.append({
+                    "alert": rule.alert_name,
+                    "metric": rule.metric_name,
+                    "value": snapshot["value"],
+                    "threshold": rule.threshold,
+                    "severity": rule.severity,
+                })
+        return firing
